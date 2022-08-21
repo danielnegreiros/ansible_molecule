@@ -4,8 +4,10 @@
   ansible.builtin.user:
     name: admin
 
-- name: Add a line to a file if the file does not exist, without passing regexp
-  become: true
+- name: Validate the sudoers file before saving
   ansible.builtin.lineinfile:
-    path: /etc/hosts
-    line: 127.0.0.1 admin-instance.foo.bar
+    path: /etc/sudoers
+    state: present
+    regexp: '^%admin ALL='
+    line: '%admin ALL=(ALL) NOPASSWD: ALL'
+    validate: /usr/sbin/visudo -cf %s
