@@ -8,9 +8,14 @@ platforms:
     image: quay.io/centos/centos:stream8
     pre_build_image: true
     inventory:
-    host_vars:
-      centos8:
-        ansible_user: ansible
+      host_vars:
+        centos8:
+          ansible_user: ansible
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
 verifier:
