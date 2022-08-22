@@ -10,7 +10,7 @@ RUN if [ $(command -v apt-get) ]; then export DEBIAN_FRONTEND=noninteractive && 
     elif [ $(command -v apk) ]; then apk update && apk add --no-cache python3 sudo bash ca-certificates; \
     elif [ $(command -v xbps-install) ]; then xbps-install -Syu && xbps-install -y python3 sudo bash ca-certificates iproute2 && xbps-remove -O; fi
 
-
+# https://molecule.readthedocs.io/en/latest/examples.html#systemd-container
 RUN set -xe \
   && groupadd -r ${ANSIBLE_USER} \
   && groupadd -r ${DEPLOY_GROUP} \

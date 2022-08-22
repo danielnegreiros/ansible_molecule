@@ -1,0 +1,12 @@
+---
+- name: Add desired user
+  become: true
+  ansible.builtin.user:
+    name: admin
+
+- name: Ensure SELinux is set to enforcing mode
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=enforcing
+    create: true
