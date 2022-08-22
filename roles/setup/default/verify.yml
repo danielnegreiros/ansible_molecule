@@ -3,8 +3,24 @@
 
 - name: Verify
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
-  - name: Example assertion
-    ansible.builtin.assert:
-      that: true
+
+- name: get admin user info
+  ansible.builtin.getent:
+    database: passwd
+    key: admin
+  register: is_user_created
+
+- name: Get stats of a file
+  ansible.builtin.stat:
+    path: /etc/selinux/config
+  register: is_file_created
+
+- debug:
+    var: is_user_created
+
+- name: Validate file exists
+  assert:
+    that:
+      - is_user_created.stat.exists
