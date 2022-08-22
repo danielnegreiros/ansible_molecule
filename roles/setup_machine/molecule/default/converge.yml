@@ -4,4 +4,4 @@
   tasks:
     - name: "Include setup"
       include_role:
-        name: "setup"
+        name: "setup_machine"
