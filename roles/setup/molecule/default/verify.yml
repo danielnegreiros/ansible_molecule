@@ -4,25 +4,25 @@
 - name: Verify
   hosts: all
   gather_facts: true
+
   tasks:
+    - name: Get root user info
+      ansible.builtin.getent:
+        database: passwd
+        key: admin
 
-- name: Get root user info
-  ansible.builtin.getent:
-    database: passwd
-    key: admin
+    - ansible.builtin.debug:
+        var: ansible_facts.getent_passwd
 
-- ansible.builtin.debug:
-    var: ansible_facts.getent_passwd
+    - name: Get stats of a file
+      ansible.builtin.stat:
+        path: /etc/selinux/config
+      register: is_file_created
 
-- name: Get stats of a file
-  ansible.builtin.stat:
-    path: /etc/selinux/config
-  register: is_file_created
+    - debug:
+        var: is_user_created
 
-- debug:
-    var: is_user_created
-
-- name: Validate file exists
-  assert:
-    that:
-      - is_user_created.stat.exists
+    - name: Validate file exists
+      assert:
+        that:
+          - is_user_created.stat.exists
