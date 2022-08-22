@@ -17,15 +17,3 @@
           - ansible_facts.getent_passwd | length == 1
         success_msg: The user was found
         fail_msg: The user was not found
-
-    - name: Get stats of a file
-      ansible.builtin.stat:
-        path: /etc/selinux/config
-      register: is_file_created
-
-    - name: Validate SELinux file exists
-      ansible.builtin.assert:
-        that:
-          - is_file_created.stat.exists
-        success_msg: The file was found
-        fail_msg: The file was not found
