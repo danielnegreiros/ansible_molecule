@@ -1,0 +1,25 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Get info from Nginx running process
+      ansible.builtin.command: systemctl status nginx
+      register: nginx_status
+
+    - name: Assert that nginx is up and running
+      ansible.builtin.assert:
+        that: nginx_status is success
+
+    - name: Vistit Nginx home page
+      ansible.builtin.command: systemctl status nginx
+      register: nginx_home_content
+
+    - name: Assert that nginx is up and running
+      ansible.builtin.assert:
+        that: "'nginx' in nginx_home_content.stdout"
+
+

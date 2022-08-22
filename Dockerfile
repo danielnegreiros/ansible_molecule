@@ -1,7 +1,7 @@
 # Molecule managed
 FROM quay.io/centos/centos:stream8
 ENV ANSIBLE_USER=ansible DEPLOY_GROUP=deployer
-ENV SUDO_GROUP={{'sudo' if 'debian' in item.image else 'wheel' }}
+ENV SUDO_GROUP=wheel
 
 RUN if [ $(command -v apt-get) ]; then export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y python3 sudo bash ca-certificates iproute2 python3-apt aptitude && apt-get clean && rm -rf /var/lib/apt/lists/*; \
     elif [ $(command -v dnf) ]; then dnf makecache && dnf --assumeyes install /usr/bin/python3 /usr/bin/python3-config /usr/bin/dnf-3 sudo bash iproute && dnf clean all; \
