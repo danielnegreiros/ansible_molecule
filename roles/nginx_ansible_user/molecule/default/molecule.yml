@@ -5,7 +5,7 @@ driver:
   name: docker
 platforms:
   - name: centos8
-    image: quay.io/centos/centos:stream8
+    image: ansible_target
     pre_build_image: true
     inventory:
       host_vars:
