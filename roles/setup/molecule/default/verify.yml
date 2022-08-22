@@ -6,11 +6,13 @@
   gather_facts: true
   tasks:
 
-- name: get admin user info
+- name: Get root user info
   ansible.builtin.getent:
     database: passwd
     key: admin
-  register: is_user_created
+
+- ansible.builtin.debug:
+    var: ansible_facts.getent_passwd
 
 - name: Get stats of a file
   ansible.builtin.stat:
