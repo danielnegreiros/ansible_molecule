@@ -11,18 +11,17 @@
         database: passwd
         key: admin
 
-    - ansible.builtin.debug:
-        var: ansible_facts.getent_passwd
+    - name: Validate 1 user is found
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.getent_passwd | length == 1
 
     - name: Get stats of a file
       ansible.builtin.stat:
         path: /etc/selinux/config
       register: is_file_created
 
-    - debug:
-        var: is_user_created
-
-    - name: Validate file exists
-      assert:
+    - name: Validate SELinux file exists
+      ansible.builtin.assert:
         that:
-          - is_user_created.stat.exists
+          - is_file_created.stat.exists
