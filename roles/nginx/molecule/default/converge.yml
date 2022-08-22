@@ -4,4 +4,4 @@
   tasks:
     - name: "Include role"
       include_role:
-        name: "nginx_ansible_user"
+        name: "nginx"
