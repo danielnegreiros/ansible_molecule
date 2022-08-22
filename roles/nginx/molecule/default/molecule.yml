@@ -5,12 +5,8 @@ driver:
   name: docker
 platforms:
   - name: centos8
-    image: ansible_target
+    image: quay.io/centos/centos:stream8
     pre_build_image: true
-    inventory:
-      host_vars:
-        centos8:
-          ansible_user: ansible
     command: /sbin/init
     tmpfs:
       - /run

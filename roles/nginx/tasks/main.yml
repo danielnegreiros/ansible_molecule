@@ -1,16 +1,13 @@
 ---
 - name: Update cache
-  become: true
   ansible.builtin.package:
     update_cache: true
 
 - name: Install nginx
-  become: true
   ansible.builtin.package:
     name: nginx
 
 - name: restart nginx
-  become: true
   ansible.builtin.service:
     name: nginx
     state: restarted
