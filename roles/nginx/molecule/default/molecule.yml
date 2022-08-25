@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: centos8
+  - name: instance
     image: quay.io/centos/centos:stream8
     pre_build_image: true
     command: /sbin/init

@@ -12,5 +12,7 @@
 
     - name: Assert that nginx is up and running
       ansible.builtin.assert:
-        that: nginx_status is success
-
+        that:
+          - nginx_status is success
+        success_msg: Nginx successfully installed and started
+        fail_msg: The test validation failed, please check manually
