@@ -1,4 +1,0 @@
----
-- name: Add desired user
-  ansible.builtin.user:
-    name: admin
