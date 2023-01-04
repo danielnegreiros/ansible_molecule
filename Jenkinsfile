@@ -20,27 +20,27 @@ pipeline {
     }
     stage ("Syntax") {
       steps {
-        sh '(source /opt/venvs/ansible/bin/activate && molecule syntax)'
+        sh '(source /opt/venvs/ansible/bin/activate && cd roles/nginx && molecule syntax)'
       }
     }
     stage ("Linting") {
       steps {
-        sh '(source /opt/venvs/ansible/bin/activate && molecule lint)'
+        sh '(source /opt/venvs/ansible/bin/activate && cd roles/nginx && molecule lint)'
       }
     }
     stage ("Playbook") {
       steps {
-        sh '(source /opt/venvs/ansible/bin/activate && molecule converge)'
+        sh '(source /opt/venvs/ansible/bin/activate && cd roles/nginx && molecule converge)'
       }
     }
     stage ("Verification") {
       steps {
-        sh '(source /opt/venvs/ansible/bin/activate && molecule verify)'
+        sh '(source /opt/venvs/ansible/bin/activate && cd roles/nginx && molecule verify)'
       }
     }
     stage ("Idempotency") {
       steps {
-        sh '(source /opt/venvs/ansible/bin/activate && molecule idempotence)'
+        sh '(source /opt/venvs/ansible/bin/activate && cd roles/nginx && molecule idempotence)'
       }
     }
   }
