@@ -11,7 +11,7 @@ pipeline {
     stage ("Build Environment") {
       steps {
         sh '''
-          source /home/daniel/py_venvs/ansible/bin/activate
+          source /opt/venvs/ansible/bin/activate
           python -V
           ansible --version
           molecule --version
@@ -20,27 +20,27 @@ pipeline {
     }
     stage ("Syntax") {
       steps {
-        sh '(source /home/daniel/py_venvs/ansible/bin/activate && molecule syntax)'
+        sh '(source /opt/venvs/ansible/bin/activate && molecule syntax)'
       }
     }
     stage ("Linting") {
       steps {
-        sh '(source /home/daniel/py_venvs/ansible/bin/activate && molecule lint)'
+        sh '(source /opt/venvs/ansible/bin/activate && molecule lint)'
       }
     }
     stage ("Playbook") {
       steps {
-        sh '(source /home/daniel/py_venvs/ansible/bin/activate && molecule converge)'
+        sh '(source /opt/venvs/ansible/bin/activate && molecule converge)'
       }
     }
     stage ("Verification") {
       steps {
-        sh '(source /home/daniel/py_venvs/ansible/bin/activate && molecule verify)'
+        sh '(source /opt/venvs/ansible/bin/activate && molecule verify)'
       }
     }
     stage ("Idempotency") {
       steps {
-        sh '(source /home/daniel/py_venvs/ansible/bin/activate && molecule idempotence)'
+        sh '(source /opt/venvs/ansible/bin/activate && molecule idempotence)'
       }
     }
   }
