@@ -20,9 +20,10 @@ provisioner:
       callbacks_enabled: community.general.opentelemetry
     callback_opentelemetry:
       enable_from_environment: ANSIBLE_OPENTELEMETRY_ENABLED
-      ANSIBLE_OPENTELEMETRY_ENABLED: "true"
-      OTEL_SERVICE_NAME: "Nginx CI"
-      OTEL_EXPORTER_OTLP_ENDPOINT: "http://192.168.0.50:32015"
-      OTEL_EXPORTER_OTLP_INSECURE: "true"
+  env:
+    ANSIBLE_OPENTELEMETRY_ENABLED: "true"
+    OTEL_SERVICE_NAME: "Nginx CI"
+    OTEL_EXPORTER_OTLP_ENDPOINT: "http://192.168.0.50:32015"
+    OTEL_EXPORTER_OTLP_INSECURE: "true"
 verifier:
   name: ansible
